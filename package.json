@@ -9,6 +9,16 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
   "dependencies": {
     "react": "16.13.1",
     "react-native": "0.63.2"
@@ -23,11 +33,19 @@
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "babel-jest": "^25.1.0",
-    "eslint": "^6.5.1",
+    "babel-plugin-transform-remove-console": "6.9.4",
+    "eslint": "7.8.1",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-react": "7.20.6",
     "jest": "^25.1.0",
+    "husky": "4.2.5",
+    "lint-staged": "10.3.0",
     "metro-react-native-babel-preset": "^0.59.0",
     "react-test-renderer": "16.13.1",
-    "prettier": "^2.0.4",
+    "prettier": "2.1.1",
     "typescript": "^3.8.3"
   },
   "jest": {
