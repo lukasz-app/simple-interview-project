@@ -20,8 +20,18 @@
     ]
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.0.9",
+    "@react-navigation/stack": "^5.1.1",
     "react": "16.13.1",
-    "react-native": "0.63.2"
+    "react-native": "0.63.2",
+    "react-native-gesture-handler": "^1.8.0",
+    "react-native-reanimated": "^1.13.0",
+    "react-native-safe-area-context": "^3.1.7",
+    "react-native-screens": "^2.10.1",
+    "react-native-shared-element": "^0.7.0",
+    "react-navigation-shared-element": "^5.0.0-alpha1",
+    "react-navigation-stack": "^2.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -40,12 +50,12 @@
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.6",
-    "jest": "^25.1.0",
     "husky": "4.2.5",
+    "jest": "^25.1.0",
     "lint-staged": "10.3.0",
     "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.13.1",
     "prettier": "2.1.1",
+    "react-test-renderer": "16.13.1",
     "typescript": "^3.8.3"
   },
   "jest": {
