@@ -23,6 +23,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     'react/jsx-indent': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.tsx', '.jsx'] }],
+    'react/prop-types': 'off',
   },
   settings: {
     ['import/resolver']: {

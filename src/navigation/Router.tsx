@@ -4,6 +4,11 @@ import { createSharedElementStackNavigator } from 'react-navigation-shared-eleme
 import { DetailScreen, HomeScreen } from '../screens';
 const Stack = createSharedElementStackNavigator();
 
+export type RootStackParamList = {
+  Home: undefined;
+  Detail: undefined;
+};
+
 const Router = () => {
   return (
     <NavigationContainer>
@@ -12,7 +17,7 @@ const Router = () => {
         <Stack.Screen
           name="Detail"
           component={DetailScreen}
-          sharedElementsConfig={(route, otherRoute, showing) => {
+          sharedElementsConfig={() => {
             return ['item'];
           }}
         />
