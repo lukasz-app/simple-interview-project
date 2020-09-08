@@ -4,9 +4,13 @@ import FastImage from 'react-native-fast-image';
 import { observer } from 'mobx-react';
 import { Item } from 'stores/DataStore';
 import styles from './style';
+import { useNavigation } from '@react-navigation/native';
+import { ProfileScreenNavigationProp } from 'navigation/Router';
 
-const ImageListItem = ({ item, navigation }: { item: Item; navigation: any }) => {
+const ImageListItem = ({ item }: { item: Item }) => {
   const { width } = useWindowDimensions();
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
+
   const { source, votesProcentage } = item;
   const onPress = () => {
     navigation.push('Detail', { item });

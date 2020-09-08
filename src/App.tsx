@@ -13,7 +13,6 @@ interface Props {
 const App = ({ appStore }: Props) => {
   React.useEffect(() => {
     appStore.onAppStarted();
-    return () => appStore.onAppFinished();
   }, []);
   return <Router />;
 };
