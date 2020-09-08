@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { View, Pressable, Text } from 'react-native';
+import { observer } from 'mobx-react';
 
 type Props = {
   type: 'down' | 'up';
   value: number;
+  onPress: () => void;
 };
 
-const VoteButton = ({ type, value }: Props) => {
+const VoteButton = ({ type, value, onPress }: Props) => {
   return (
-    <Pressable>
+    <Pressable onPress={onPress}>
       <View
         style={{
           height: 60,
@@ -25,4 +27,4 @@ const VoteButton = ({ type, value }: Props) => {
   );
 };
 
-export default VoteButton;
+export default observer(VoteButton);

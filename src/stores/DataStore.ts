@@ -1,22 +1,54 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import BaseStore from './BaseStore';
 import { persist, create } from 'mobx-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const hydrate = create({ storage: AsyncStorage });
 
+export class Item {
+  constructor(id: string, source: string) {
+    this.id = id;
+    this.source = source;
+  }
+  id = '';
+  source = '';
+  @observable votesUp = 0;
+  @observable votesDown = 0;
+
+  @computed
+  get sum() {
+    return this.votesDown + this.votesUp;
+  }
+
+  @computed
+  get votesProcentage() {
+    if (this.sum == 0) return `50%`;
+    return `${((this.votesUp * 100) / this.sum).toFixed(1)}%`;
+  }
+
+  @action
+  incrementVotesUp = () => {
+    this.votesUp = this.votesUp + 1;
+  };
+
+  @action
+  incrementVotesDown = () => {
+    this.votesDown = this.votesDown + 1;
+  };
+}
+
 export default class DataStore extends BaseStore {
   @persist('list')
   @observable
-  data = [];
+  data: Item[] = [];
 
   @observable
   fetchError = null;
 
   onAppStarted = () => {
-    hydrate('dataStore', this).then((store) => {
-      if (this.data.length != 0) return;
+    hydrate('dataStore', this).then(() => {
+      // if (this.data.length != 0) return;
       this.fetchData();
     });
   };
@@ -34,19 +66,12 @@ export default class DataStore extends BaseStore {
       .catch((e) => {
         console.log(e);
       })
-      .finally(() => {
-        console.log('AAA', this.data);
-      });
+      .finally();
   };
 
   @action
   saveData = (rawData) => {
-    this.data = rawData.map(({ id, download_url }) => ({
-      id,
-      source: download_url,
-      pointsUp: 0,
-      pointsDown: 0,
-    }));
+    this.data = rawData.map(({ id, download_url }) => new Item(id, download_url));
   };
 
   @action

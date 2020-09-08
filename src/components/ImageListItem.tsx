@@ -1,13 +1,16 @@
 import * as React from 'react';
 import FastImage from 'react-native-fast-image';
 import { View, useWindowDimensions, Pressable, Text } from 'react-native';
+import { observer } from 'mobx-react';
+import { Item } from '../stores/DataStore';
 
-const ImageListItem = ({ id, source, pojntsUp, pointsDown, navigation }) => {
-  const { height, width } = useWindowDimensions();
+const ImageListItem = ({ item, navigation }: { item: Item; navigation: any }) => {
+  const { width } = useWindowDimensions();
+  const { source, votesProcentage } = item;
   const onPress = () => {
-    navigation.push('Detail', { id, source });
+    navigation.push('Detail', { item });
   };
-  console.log(id);
+
   return (
     <Pressable onPress={onPress}>
       <View style={{}}>
@@ -24,7 +27,7 @@ const ImageListItem = ({ id, source, pojntsUp, pointsDown, navigation }) => {
               fontSize: 16,
               fontWeight: '600',
             }}>
-            0%
+            {votesProcentage}
           </Text>
         </View>
       </View>
@@ -32,4 +35,4 @@ const ImageListItem = ({ id, source, pojntsUp, pointsDown, navigation }) => {
   );
 };
 
-export default ImageListItem;
+export default observer(ImageListItem);

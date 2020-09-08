@@ -5,15 +5,22 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/Router';
 import FastImage from 'react-native-fast-image';
 import VoteButton from '../../components/VoteButton';
+import { RouteProp } from '@react-navigation/native';
+import { Item } from '../../stores/DataStore';
+import { observer } from 'mobx-react';
 
-type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Detail'>;
+type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Detail'>;
+type DetailScreenRouteProp = RouteProp<RootStackParamList, 'Detail'>;
 
 type Props = {
-  navigation: ProfileScreenNavigationProp;
+  navigation: DetailScreenNavigationProp;
+  route: DetailScreenRouteProp;
 };
 const Detail = ({ navigation, route }: Props) => {
   const { height, width } = useWindowDimensions();
-  const { source, id } = route.params;
+  const {
+    item: { source, incrementVotesDown, incrementVotesUp, votesDown, votesUp },
+  } = route.params;
   return (
     <View style={styles.container}>
       <FastImage
@@ -32,11 +39,11 @@ const Detail = ({ navigation, route }: Props) => {
             alignItems: 'center',
           },
         ]}>
-        <VoteButton type="down" value={10} />
-        <VoteButton type="up" value={5} />
+        <VoteButton type="down" value={votesDown} onPress={incrementVotesDown} />
+        <VoteButton type="up" value={votesUp} onPress={incrementVotesUp} />
       </View>
     </View>
   );
 };
 
-export default Detail;
+export default observer(Detail);

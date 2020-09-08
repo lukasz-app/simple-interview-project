@@ -14,14 +14,12 @@ export default class AppStore extends BaseStore {
 
   @action
   onAppStarted = () => {
-    console.log('On App Started');
     this.setEventListeners();
     this.rootStore.stores.dataStore.onAppStarted();
   };
 
   @action
   onAppFinished = () => {
-    console.log('On App Started');
     this.removeEventListeners();
   };
 
