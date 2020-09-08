@@ -5,16 +5,14 @@ import { observer } from 'mobx-react';
 import { VoteButton } from 'components';
 import styles from './style';
 import { DetailScreenRouteProp } from 'navigation/Router';
+import { useRoute } from '@react-navigation/native';
 
-type Props = {
-  route: DetailScreenRouteProp;
-};
-
-const Detail = ({ route }: Props) => {
+const Detail = () => {
+  const { params } = useRoute<DetailScreenRouteProp>();
   const { height, width } = useWindowDimensions();
   const {
     item: { source, incrementVotesDown, incrementVotesUp, votesDown, votesUp },
-  } = route.params;
+  } = params;
   return (
     <View style={styles.container}>
       <FastImage source={{ uri: source }} style={{ width, height }} />
