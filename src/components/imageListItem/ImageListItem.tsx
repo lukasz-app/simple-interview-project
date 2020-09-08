@@ -1,8 +1,8 @@
 import * as React from 'react';
-import FastImage from 'react-native-fast-image';
 import { View, useWindowDimensions, Pressable, Text } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { observer } from 'mobx-react';
-import { Item } from '../../stores/DataStore';
+import { Item } from 'stores/DataStore';
 import styles from './style';
 
 const ImageListItem = ({ item, navigation }: { item: Item; navigation: any }) => {
@@ -15,7 +15,7 @@ const ImageListItem = ({ item, navigation }: { item: Item; navigation: any }) =>
   return (
     <Pressable onPress={onPress}>
       <FastImage
-        source={{ uri: source }}
+        source={{ uri: source, cache: 'cacheOnly' }}
         style={{
           width: width / 3,
           height: width / 3,

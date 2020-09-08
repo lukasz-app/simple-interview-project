@@ -13,8 +13,12 @@ export class Item {
   }
   id = '';
   source = '';
-  @observable votesUp = 0;
-  @observable votesDown = 0;
+  @persist
+  @observable
+  votesUp = 0;
+  @persist
+  @observable
+  votesDown = 0;
 
   @computed
   get sum() {
@@ -48,7 +52,9 @@ export default class DataStore extends BaseStore {
 
   onAppStarted = () => {
     hydrate('dataStore', this).then(() => {
-      // if (this.data.length != 0) return;
+      console.log('Hydrate', this);
+      if (this.data.length != 0) return;
+      console.log('Hydrate AFTER FETXG');
       this.fetchData();
     });
   };

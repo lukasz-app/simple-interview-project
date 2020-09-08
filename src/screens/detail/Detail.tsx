@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { View, useWindowDimensions } from 'react-native';
-import styles from './style';
-import { RootStackParamList } from '../../navigation/Router';
 import FastImage from 'react-native-fast-image';
-import VoteButton from '../../components/voteButton/VoteButton';
 import { RouteProp } from '@react-navigation/native';
 import { observer } from 'mobx-react';
+import { RootStackParamList } from 'navigation/Router';
+import { VoteButton } from 'components';
+import styles from './style';
 
 type DetailScreenRouteProp = RouteProp<RootStackParamList, 'Detail'>;
 type Props = {
