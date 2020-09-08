@@ -25,19 +25,12 @@ yarn ios
 ```
 
 
-<!-- ## Testing
-There are two testing solutions integrated with the project. 
-
+## Testing
 To run unit tests with JEST:
 ```
 yarn test
 ```
 
-To run ios / android E2E test with DETOX:
-```
-yarn test:ios
-yarn test:android
-``` -->
 
 ## Resources
 ### React-Native
