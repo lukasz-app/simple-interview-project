@@ -15,7 +15,7 @@ const ImageListItem = ({ item, navigation }: { item: Item; navigation: any }) =>
   return (
     <Pressable onPress={onPress}>
       <FastImage
-        source={{ uri: source, cache: 'cacheOnly' }}
+        source={{ uri: source }}
         style={{
           width: width / 3,
           height: width / 3,

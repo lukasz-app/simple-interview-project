@@ -3,6 +3,7 @@ import { observable, action, computed } from 'mobx';
 import BaseStore from './BaseStore';
 import { persist, create } from 'mobx-persist';
 import AsyncStorage from '@react-native-community/async-storage';
+import FastImage from 'react-native-fast-image';
 
 const hydrate = create({ storage: AsyncStorage });
 
@@ -11,7 +12,11 @@ export class Item {
     this.id = id;
     this.source = source;
   }
+  @persist
+  @observable
   id = '';
+  @persist
+  @observable
   source = '';
   @persist
   @observable
@@ -43,7 +48,7 @@ export class Item {
 }
 
 export default class DataStore extends BaseStore {
-  @persist('list')
+  @persist('list', Item)
   @observable
   data: Item[] = [];
 
@@ -52,9 +57,7 @@ export default class DataStore extends BaseStore {
 
   onAppStarted = () => {
     hydrate('dataStore', this).then(() => {
-      console.log('Hydrate', this);
       if (this.data.length != 0) return;
-      console.log('Hydrate AFTER FETXG');
       this.fetchData();
     });
   };
@@ -70,9 +73,8 @@ export default class DataStore extends BaseStore {
       })
       .then(this.saveData)
       .catch((e) => {
-        console.log(e);
-      })
-      .finally();
+        console.log({ ...e });
+      });
   };
 
   @action

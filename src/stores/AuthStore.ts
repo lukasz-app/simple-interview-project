@@ -1,5 +1,5 @@
-import { AsyncStorage } from 'react-native';
-import { observable, action, computed } from 'mobx';
+import AsyncStorage from '@react-native-community/async-storage';
+import { observable, action } from 'mobx';
 import { persist, create } from 'mobx-persist';
 import BaseStore from './BaseStore';
 
