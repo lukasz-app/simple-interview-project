@@ -1,25 +1,24 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import { DetailScreen, HomeScreen } from '../screens';
-const Stack = createSharedElementStackNavigator();
+import { TransitionPresets, createStackNavigator } from '@react-navigation/stack';
+import { View } from 'react-native';
+const Stack = createStackNavigator();
 
 export type RootStackParamList = {
   Home: undefined;
-  Detail: undefined;
+  Detail: { id: string; source: string };
 };
 
 const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{}} />
         <Stack.Screen
           name="Detail"
           component={DetailScreen}
-          sharedElementsConfig={() => {
-            return ['item'];
-          }}
+          options={{ headerTransparent: true, title: '' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

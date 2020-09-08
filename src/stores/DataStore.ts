@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { observable, action } from 'mobx';
 import BaseStore from './BaseStore';
 import { persist, create } from 'mobx-persist';
@@ -22,22 +23,27 @@ export default class DataStore extends BaseStore {
 
   fetchData = () => {
     fetch('https://picsum.photos/v2/list')
-      .then(({ status, json }) => {
-        if (status !== 200) {
-          this.setError(status);
+      .then((response) => {
+        if (response.status !== 200) {
+          this.setError(response.status);
           return;
         }
-        return json();
+        return response.json();
       })
       .then(this.saveData)
-      .catch();
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(() => {
+        console.log('AAA', this.data);
+      });
   };
 
   @action
   saveData = (rawData) => {
-    this.data = rawData.map(({ id, url }) => ({
+    this.data = rawData.map(({ id, download_url }) => ({
       id,
-      url,
+      source: download_url,
       pointsUp: 0,
       pointsDown: 0,
     }));
