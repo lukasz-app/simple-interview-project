@@ -5,9 +5,10 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
   },
-  element: {
-    backgroundColor: 'blue',
-    width: 200,
-    height: 200,
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });

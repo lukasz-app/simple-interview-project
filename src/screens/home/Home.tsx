@@ -7,7 +7,7 @@ import { inject, observer } from 'mobx-react';
 import { Stores } from '../../stores/RootStore';
 import { FlatList } from 'react-native';
 import DataStore, { Item } from '../../stores/DataStore';
-import ImageListItem from '../../components/ImageListItem';
+import ImageListItem from '../../components/imageListItem/ImageListItem';
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 

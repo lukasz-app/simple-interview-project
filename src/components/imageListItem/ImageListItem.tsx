@@ -2,7 +2,8 @@ import * as React from 'react';
 import FastImage from 'react-native-fast-image';
 import { View, useWindowDimensions, Pressable, Text } from 'react-native';
 import { observer } from 'mobx-react';
-import { Item } from '../stores/DataStore';
+import { Item } from '../../stores/DataStore';
+import styles from './style';
 
 const ImageListItem = ({ item, navigation }: { item: Item; navigation: any }) => {
   const { width } = useWindowDimensions();
@@ -13,23 +14,15 @@ const ImageListItem = ({ item, navigation }: { item: Item; navigation: any }) =>
 
   return (
     <Pressable onPress={onPress}>
-      <View style={{}}>
-        <FastImage
-          source={{ uri: source }}
-          style={{
-            width: width / 3,
-            height: width / 3,
-          }}
-        />
-        <View style={{ position: 'absolute', bottom: 5, left: 5 }}>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: '600',
-            }}>
-            {votesProcentage}
-          </Text>
-        </View>
+      <FastImage
+        source={{ uri: source }}
+        style={{
+          width: width / 3,
+          height: width / 3,
+        }}
+      />
+      <View style={styles.overlay}>
+        <Text style={styles.text}>{votesProcentage}</Text>
       </View>
     </Pressable>
   );
