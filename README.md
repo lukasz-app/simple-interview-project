@@ -1,4 +1,4 @@
-# FlipFit recruitment assignment
+# Recruitment assignment
 Native mobile application written in react-native and typescript
 
 ## Instalation 
